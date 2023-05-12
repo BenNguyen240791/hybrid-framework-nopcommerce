@@ -94,6 +94,9 @@ public class Level_02_Apply_BasePage_II {
 		basePage.clickToElement(driver, "//button[@id='register-button']");
 
 		Assert.assertEquals(basePage.getElementText(driver, "//div[@class='result']"), "Your registration completed");
+		
+		basePage.waitForElementClickable(driver, "//a[contains(@class,'register-continue-button')]");
+		basePage.clickToElement(driver, "//a[contains(@class,'register-continue-button')]");
 
 	}
 

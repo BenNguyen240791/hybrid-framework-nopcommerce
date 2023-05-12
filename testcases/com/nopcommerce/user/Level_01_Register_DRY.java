@@ -77,6 +77,8 @@ public class Level_01_Register_DRY {
 		driver.findElement(By.cssSelector("button#register-button")).click();
 
 		Assert.assertEquals(driver.findElement(By.cssSelector("div.result")).getText(), "Your registration completed");
+		
+		driver.findElement(By.cssSelector("a.register-continue-button")).click();
 
 	}
 
