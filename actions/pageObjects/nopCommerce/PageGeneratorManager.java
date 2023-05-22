@@ -2,8 +2,6 @@ package pageObjects.nopCommerce;
 
 import org.openqa.selenium.WebDriver;
 
-import com.nopcommerce.user.MyAccountPageObject;
-
 public class PageGeneratorManager {
 	public static HomePageObject getHomePage(WebDriver driver) {
 		return new HomePageObject(driver);	

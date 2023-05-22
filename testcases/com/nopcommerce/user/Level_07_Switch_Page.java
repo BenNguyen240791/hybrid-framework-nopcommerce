@@ -15,6 +15,7 @@ import commons.BasePage;
 import commons.BaseTest;
 import pageObjects.nopCommerce.HomePageObject;
 import pageObjects.nopCommerce.LoginPageObject;
+import pageObjects.nopCommerce.MyAccountPageObject;
 import pageObjects.nopCommerce.PageGeneratorManager;
 import pageObjects.nopCommerce.RegisterPageObject;
 
@@ -70,6 +71,14 @@ public class Level_07_Switch_Page extends BaseTest {
 
 	}
 
+	@Test
+	public void User_05_Switch_Role() {
+		// Role User -> Role Admin
+		
+		// Role Admin -> Role User
+		
+
+	}
 	
 
 	
