@@ -4,15 +4,18 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BasePage;
-import pageObjects.HomePageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.nopCommerce.HomePageObject;
+import pageObjects.nopCommerce.RegisterPageObject;
 
 public class Level_03_Page_Object_01_Register {
 	private WebDriver driver;
@@ -22,21 +25,32 @@ public class Level_03_Page_Object_01_Register {
 	private RegisterPageObject registerPage;
 	private String projectPath = System.getProperty("user.dir");
 
+	@Parameters("browser")
 	@BeforeClass
-	public void beforeClass() {
-		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
+	public void beforeClass(String browserName) {
+		if (browserName.equals("firefox")) {
+			System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+			driver = new FirefoxDriver();
+			
+		} else if (browserName.equals("chrome")) {
+			System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
+			driver = new ChromeDriver();
+			
+		} else if (browserName.equals("edge")) {
+			System.setProperty("webdriver.edge.driver", projectPath + "\\browserDrivers\\msedgedriver.exe");
+			driver = new EdgeDriver();
+		} else {
+			throw new RuntimeException("Browser name invalid");
+		}
+		
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		// Mowr URL
 		driver.get("https://demo.nopcommerce.com/");
+		homePage = new HomePageObject(driver);
 
 		firstName = "Ben";
 		lastName = "Nguyen";
 		password = "123123123";
 		emailAddress = "bennt" + getRandomNumber() + "@gmail.vn";
-
-		homePage = new HomePageObject(driver);
-
 	}
 
 	@Test
@@ -57,7 +71,6 @@ public class Level_03_Page_Object_01_Register {
 		Assert.assertEquals(registerPage.getErrorMessageAtEmailTextbox(), "Email is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(), "Password is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtConfirmTextbox(), "Password is required.");
-
 	}
 
 	@Test
@@ -65,8 +78,6 @@ public class Level_03_Page_Object_01_Register {
 
 		System.out.println("Register_02 -Step 01: Click to Register link");
 		homePage.clickToRegisterLink();
-
-		// CLick Register link >> nhảy qua trang Register >> thì phải khởi tạo
 		registerPage = new RegisterPageObject(driver);
 
 		System.out.println("Register_02 -Step 02: Input to required fields");
@@ -88,8 +99,6 @@ public class Level_03_Page_Object_01_Register {
 	public void Register_03_Success() {
 		System.out.println("Register_03 -Step 01: Click to Register link");
 		homePage.clickToRegisterLink();
-
-		// CLick Register link >> nhảy qua trang Register >> thì phải khởi tạo
 		registerPage = new RegisterPageObject(driver);
 
 		System.out.println("Register_03 -Step 02: Input to required fields");

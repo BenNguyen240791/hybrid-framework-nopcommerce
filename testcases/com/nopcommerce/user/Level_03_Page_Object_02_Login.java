@@ -11,9 +11,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import commons.BasePage;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.nopCommerce.HomePageObject;
+import pageObjects.nopCommerce.LoginPageObject;
+import pageObjects.nopCommerce.RegisterPageObject;
 
 public class Level_03_Page_Object_02_Login {
 	private WebDriver driver;
@@ -70,11 +70,13 @@ public class Level_03_Page_Object_02_Login {
 
 	@Test
 	public void Login_01_Empty_Data() {
+		System.out.println("Login_01 -Step 01: Click to Login link");
 		homePage.clickToLoginLink();
 
 		// Từ trang HOme - click Login link >> Qua trang login
 		loginPage = new LoginPageObject(driver);
 
+		System.out.println("Login_01 -Step 02: Click to Login button");
 		loginPage.clickToLoginButton();
 
 		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Please enter your email");
@@ -143,6 +145,7 @@ public class Level_03_Page_Object_02_Login {
 
 	@Test
 	public void Login_06_Valid_Email_Password() {
+		System.out.println("Login_01 -Step 01: Click to Login link");
 		homePage.clickToLoginLink();
 
 		loginPage = new LoginPageObject(driver);
