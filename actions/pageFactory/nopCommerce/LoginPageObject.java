@@ -7,7 +7,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 import commons.BasePageFactory;
-import pageUIs.nopCommerce.LoginPageUI;
+import pageUIs.nopCommerce.user.LoginPageUI;
 
 public class LoginPageObject extends BasePageFactory {
 	private WebDriver driver;

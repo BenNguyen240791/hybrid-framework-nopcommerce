@@ -31,7 +31,7 @@ public class BaseTest {
 		}
 		
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		driver.get("https://demo.nopcommerce.com/");
+		driver.get(GlobalContants.PORTAL_PAGE_URL);
 		driver.manage().window().maximize();
 		
 		return driver;
